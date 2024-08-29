@@ -1,79 +1,82 @@
-// JavaScript to handle collapsible functionality and JSON data
-document.addEventListener("DOMContentLoaded", function() {
-    const dataContainer = document.getElementById("collapsible-container");
+function createTable(data) {
+    const table = document.createElement('table');
+    const headerRow = document.createElement('tr');
 
-    const createCollapsibleSection = (mainType, items) => {
-        const section = document.createElement("div");
-        section.classList.add("collapsible");
-        
-        const button = document.createElement("button");
-        button.classList.add("collapsible-btn");
-        button.textContent = mainType;
-        section.appendChild(button);
-        
-        const content = document.createElement("div");
-        content.classList.add("collapsible-content");
+    // Define table headers
+    const headers = ['Main', 'Type', 'Sub'];
+    headers.forEach(headerText => {
+        const header = document.createElement('th');
+        header.textContent = headerText;
+        headerRow.appendChild(header);
+    });
+    table.appendChild(headerRow);
 
-        // Group by Type within the main section
-        const groupedByType = items.reduce((acc, item) => {
-            if (!acc[item.Type]) {
-                acc[item.Type] = [];
-            }
-            acc[item.Type].push(item);
-            return acc;
-        }, {});
+    // Populate table with data
+    data.forEach(item => {
+        const row = document.createElement('tr');
 
-        Object.keys(groupedByType).forEach(type => {
-            const typeSection = document.createElement("div");
-            typeSection.classList.add("nested-collapsible");
-
-            const typeButton = document.createElement("button");
-            typeButton.classList.add("collapsible-btn");
-            typeButton.textContent = type;
-            typeSection.appendChild(typeButton);
-
-            const typeContent = document.createElement("div");
-            typeContent.classList.add("collapsible-content");
-
-            groupedByType[type].forEach(item => {
-                const itemElement = document.createElement("a");
-                itemElement.href = item.Link;
-                itemElement.target = "_blank";
-                itemElement.textContent = item.Sub;
-                typeContent.appendChild(itemElement);
-            });
-
-            typeSection.appendChild(typeContent);
-            content.appendChild(typeSection);
+        const mainCell = document.createElement('td');
+        mainCell.textContent = item.main;
+        mainCell.classList.add('tree');
+        mainCell.addEventListener('click', function () {
+            row.nextElementSibling.classList.toggle('active');
         });
+        row.appendChild(mainCell);
 
-        section.appendChild(content);
-        dataContainer.appendChild(section);
-    };
+        const typeCell = document.createElement('td');
+        typeCell.textContent = item.Type;
+        row.appendChild(typeCell);
 
-    const groupedData = jsonData.reduce((acc, item) => {
-        if (!acc[item.Main]) {
-            acc[item.Main] = [];
-        }
-        acc[item.Main].push(item);
-        return acc;
-    }, {});
+        const subRow = document.createElement('tr');
+        subRow.classList.add('nested');
 
-    Object.keys(groupedData).forEach(mainType => {
-        createCollapsibleSection(mainType, groupedData[mainType]);
+        const subCell = document.createElement('td');
+        const link = document.createElement('a');
+        link.href = item.Link;
+        link.textContent = item.Sub;
+        link.target = "_blank";
+        subCell.colSpan = headers.length;
+        subCell.appendChild(link);
+
+        const metadataBtn = document.createElement('span');
+        metadataBtn.textContent = ' (Metadata)';
+        metadataBtn.classList.add('metadata-btn');
+        metadataBtn.addEventListener('click', function (event) {
+            showPopup(event, item);
+        });
+        subCell.appendChild(metadataBtn);
+        subRow.appendChild(subCell);
+
+        table.appendChild(row);
+        table.appendChild(subRow);
     });
 
-    // Add click event listeners for collapsible buttons
-    const coll = document.getElementsByClassName("collapsible-btn");
-    for (let i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            const content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            } else {
-                content.style.display = "block";
-            }
-        });
+    document.getElementById('data-table').appendChild(table);
+}
+
+// Function to show metadata pop-up
+function showPopup(event, item) {
+    event.stopPropagation();
+    const popup = document.getElementById('metadata-popup');
+    let content = '';
+    for (let key in item) {
+        if (key !== 'main' && key !== 'Type' && key !== 'Sub' && key !== 'Link') {
+            content += `<strong>${key}</strong>: ${item[key]}<br>`;
+        }
+    }
+    popup.innerHTML = content;
+    popup.style.left = event.pageX + 'px';
+    popup.style.top = event.pageY + 'px';
+    popup.classList.add('active');
+}
+
+// Hide popup when clicking outside
+document.addEventListener('click', function(event) {
+    const popup = document.getElementById('metadata-popup');
+    if (!event.target.closest('.metadata-btn')) {
+        popup.classList.remove('active');
     }
 });
+
+// Initialize the table with JSON data
+createTable(jsonData);
