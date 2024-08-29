@@ -34,6 +34,7 @@ th, td {
     border: 1px solid #ccc;
     padding: 10px;
     z-index: 1000;
+    max-width: 300px;
 }
 
 .metadata-popup.active {
