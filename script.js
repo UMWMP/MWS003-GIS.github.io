@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         Object.keys(groupedByType).forEach(type => {
             const typeSection = document.createElement("div");
-            typeSection.classList.add("collapsible");
+            typeSection.classList.add("nested-collapsible");
 
             const typeButton = document.createElement("button");
             typeButton.classList.add("collapsible-btn");
@@ -63,11 +63,12 @@ document.addEventListener("DOMContentLoaded", function() {
         createCollapsibleSection(mainType, groupedData[mainType]);
     });
 
-    var coll = document.getElementsByClassName("collapsible-btn");
-    for (var i = 0; i < coll.length; i++) {
+    // Add click event listeners for collapsible buttons
+    const coll = document.getElementsByClassName("collapsible-btn");
+    for (let i = 0; i < coll.length; i++) {
         coll[i].addEventListener("click", function() {
             this.classList.toggle("active");
-            var content = this.nextElementSibling;
+            const content = this.nextElementSibling;
             if (content.style.display === "block") {
                 content.style.display = "none";
             } else {
