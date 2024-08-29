@@ -9,15 +9,24 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
         .tree {
             cursor: pointer;
+            font-weight: bold;
         }
         .nested {
             display: none;
-            margin-left: 20px;
         }
         .active {
-            display: block;
+            display: table-row;
         }
         .metadata-popup {
             display: none;
@@ -47,18 +56,28 @@
 
 <script src="data.js"></script> <!-- Load the JSON data -->
 <script>
-    // Function to create the table and tree structure
     function createTable(data) {
         const table = document.createElement('table');
-        for (let i = 0; i < data.length; i++) {
-            const item = data[i];
+        const headerRow = document.createElement('tr');
+
+        // Define table headers
+        const headers = ['Main', 'Type', 'Sub'];
+        headers.forEach(headerText => {
+            const header = document.createElement('th');
+            header.textContent = headerText;
+            headerRow.appendChild(header);
+        });
+        table.appendChild(headerRow);
+
+        // Populate table with data
+        data.forEach(item => {
             const row = document.createElement('tr');
 
             const mainCell = document.createElement('td');
             mainCell.textContent = item.main;
             mainCell.classList.add('tree');
             mainCell.addEventListener('click', function () {
-                this.parentElement.querySelector('.nested').classList.toggle('active');
+                row.nextElementSibling.classList.toggle('active');
             });
             row.appendChild(mainCell);
 
@@ -66,16 +85,16 @@
             typeCell.textContent = item.Type;
             row.appendChild(typeCell);
 
-            const subTree = document.createElement('div');
-            subTree.classList.add('nested');
             const subRow = document.createElement('tr');
-            
+            subRow.classList.add('nested');
+
             const subCell = document.createElement('td');
             const link = document.createElement('a');
             link.href = item.Link;
             link.textContent = item.Sub;
+            link.target = "_blank";
+            subCell.colSpan = headers.length;
             subCell.appendChild(link);
-            subRow.appendChild(subCell);
 
             const metadataBtn = document.createElement('span');
             metadataBtn.textContent = ' (Metadata)';
@@ -84,16 +103,18 @@
                 showPopup(event, item);
             });
             subCell.appendChild(metadataBtn);
-            subTree.appendChild(subRow);
-            row.appendChild(subTree);
+            subRow.appendChild(subCell);
 
             table.appendChild(row);
-        }
+            table.appendChild(subRow);
+        });
+
         document.getElementById('data-table').appendChild(table);
     }
 
     // Function to show metadata pop-up
     function showPopup(event, item) {
+        event.stopPropagation();
         const popup = document.getElementById('metadata-popup');
         let content = '';
         for (let key in item) {
