@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Data Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .tree {
+            cursor: pointer;
+        }
+        .nested {
+            display: none;
+            margin-left: 20px;
+        }
+        .active {
+            display: block;
+        }
+        .metadata-popup {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 1000;
+        }
+        .metadata-popup.active {
+            display: block;
+        }
+        .metadata-btn {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h2>JSON Data Table</h2>
+
+<div id="data-table"></div>
+
+<div id="metadata-popup" class="metadata-popup"></div>
+
+<script src="data.js"></script> <!-- Load the JSON data -->
+<script>
+    // Function to create the table and tree structure
+    function createTable(data) {
+        const table = document.createElement('table');
+        for (let i = 0; i < data.length; i++) {
+            const item = data[i];
+            const row = document.createElement('tr');
+
+            const mainCell = document.createElement('td');
+            mainCell.textContent = item.main;
+            mainCell.classList.add('tree');
+            mainCell.addEventListener('click', function () {
+                this.parentElement.querySelector('.nested').classList.toggle('active');
+            });
+            row.appendChild(mainCell);
+
+            const typeCell = document.createElement('td');
+            typeCell.textContent = item.Type;
+            row.appendChild(typeCell);
+
+            const subTree = document.createElement('div');
+            subTree.classList.add('nested');
+            const subRow = document.createElement('tr');
+            
+            const subCell = document.createElement('td');
+            const link = document.createElement('a');
+            link.href = item.Link;
+            link.textContent = item.Sub;
+            subCell.appendChild(link);
+            subRow.appendChild(subCell);
+
+            const metadataBtn = document.createElement('span');
+            metadataBtn.textContent = ' (Metadata)';
+            metadataBtn.classList.add('metadata-btn');
+            metadataBtn.addEventListener('click', function (event) {
+                showPopup(event, item);
+            });
+            subCell.appendChild(metadataBtn);
+            subTree.appendChild(subRow);
+            row.appendChild(subTree);
+
+            table.appendChild(row);
+        }
+        document.getElementById('data-table').appendChild(table);
+    }
+
+    // Function to show metadata pop-up
+    function showPopup(event, item) {
+        const popup = document.getElementById('metadata-popup');
+        let content = '';
+        for (let key in item) {
+            if (key !== 'main' && key !== 'Type' && key !== 'Sub' && key !== 'Link') {
+                content += `<strong>${key}</strong>: ${item[key]}<br>`;
+            }
+        }
+        popup.innerHTML = content;
+        popup.style.left = event.pageX + 'px';
+        popup.style.top = event.pageY + 'px';
+        popup.classList.add('active');
+    }
+
+    // Hide popup when clicking outside
+    document.addEventListener('click', function(event) {
+        const popup = document.getElementById('metadata-popup');
+        if (!event.target.closest('.metadata-btn')) {
+            popup.classList.remove('active');
+        }
+    });
+
+    // Initialize the table with JSON data
+    createTable(jsonData);
+</script>
+
+</body>
+</html>
