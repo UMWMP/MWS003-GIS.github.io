@@ -1,0 +1,24 @@
+/* Basic styles for collapsible sections */
+.collapsible-btn {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.collapsible-content {
+    display: none;
+    padding: 10px;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+.collapsible-content a {
+    color: blue;
+    text-decoration: underline;
+}
