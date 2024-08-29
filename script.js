@@ -1,3 +1,4 @@
+// Function to create and populate the table
 function createTable(data) {
     const table = document.createElement('table');
     const headerRow = document.createElement('tr');
