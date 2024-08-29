@@ -21,4 +21,5 @@
 .collapsible-content a {
     color: blue;
     text-decoration: underline;
+    display: block; /* Ensure each link is on a new line */
 }
