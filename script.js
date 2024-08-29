@@ -13,13 +13,40 @@ document.addEventListener("DOMContentLoaded", function() {
         
         const content = document.createElement("div");
         content.classList.add("collapsible-content");
-        
-        items.forEach(item => {
-            const itemElement = document.createElement("div");
-            itemElement.innerHTML = `<strong>${item.Type}</strong>: ${item.Sub} - <a href="${item.Link}" target="_blank">${item.Link}</a>`;
-            content.appendChild(itemElement);
+
+        // Group by Type within the main section
+        const groupedByType = items.reduce((acc, item) => {
+            if (!acc[item.Type]) {
+                acc[item.Type] = [];
+            }
+            acc[item.Type].push(item);
+            return acc;
+        }, {});
+
+        Object.keys(groupedByType).forEach(type => {
+            const typeSection = document.createElement("div");
+            typeSection.classList.add("collapsible");
+
+            const typeButton = document.createElement("button");
+            typeButton.classList.add("collapsible-btn");
+            typeButton.textContent = type;
+            typeSection.appendChild(typeButton);
+
+            const typeContent = document.createElement("div");
+            typeContent.classList.add("collapsible-content");
+
+            groupedByType[type].forEach(item => {
+                const itemElement = document.createElement("a");
+                itemElement.href = item.Link;
+                itemElement.target = "_blank";
+                itemElement.textContent = item.Sub;
+                typeContent.appendChild(itemElement);
+            });
+
+            typeSection.appendChild(typeContent);
+            content.appendChild(typeSection);
         });
-        
+
         section.appendChild(content);
         dataContainer.appendChild(section);
     };
