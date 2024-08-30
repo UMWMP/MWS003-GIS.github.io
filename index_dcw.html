@@ -28,6 +28,7 @@
         }
         .content {
             display: none;
+            padding-left: 20px;
         }
         .link {
             color: blue;
@@ -48,84 +49,84 @@
 
     <script src="data.js"></script>
     <script>
-        const treeView = document.getElementById('treeView');
+        document.addEventListener("DOMContentLoaded", function() {
+            const treeView = document.getElementById('treeView');
 
-        jsonData.forEach(data => {
-            const mainItem = document.createElement('li');
-            const mainCollapsible = document.createElement('div');
-            mainCollapsible.className = 'collapsible';
-            mainCollapsible.textContent = data.main;
-            mainItem.appendChild(mainCollapsible);
+            jsonData.forEach(data => {
+                const mainItem = document.createElement('li');
+                const mainCollapsible = document.createElement('div');
+                mainCollapsible.className = 'collapsible';
+                mainCollapsible.textContent = data.main;
+                mainItem.appendChild(mainCollapsible);
 
-            const typeItem = document.createElement('ul');
-            const typeCollapsible = document.createElement('div');
-            typeCollapsible.className = 'collapsible';
-            typeCollapsible.textContent = data.Type;
-            typeItem.appendChild(typeCollapsible);
+                const typeContent = document.createElement('div');
+                typeContent.className = 'content';
 
-            const subItem = document.createElement('ul');
-            const subLink = document.createElement('li');
-            const link = document.createElement('a');
-            link.className = 'link';
-            link.href = data.Link;
-            link.target = '_blank';
-            link.textContent = data.Sub;
-            subLink.appendChild(link);
+                const typeItem = document.createElement('div');
+                typeItem.className = 'collapsible';
+                typeItem.textContent = data.Type;
+                typeContent.appendChild(typeItem);
 
-            const metadataLink = document.createElement('li');
-            const metadata = document.createElement('span');
-            metadata.className = 'metadata';
-            metadata.textContent = 'Metadata';
-            metadata.addEventListener('click', () => {
-                const metadataInfo = `
-                    <strong>Title:</strong> ${data.Title}<br>
-                    <strong>Abstract:</strong> ${data.Abstract}<br>
-                    <strong>Keywords:</strong> ${data.Keywords}<br>
-                    <strong>Type:</strong> ${data.Type__1}<br>
-                    <strong>Format:</strong> ${data.Format}<br>
-                    <strong>Version:</strong> ${data.Version}<br>
-                    <strong>Access Constraints:</strong> ${data['Access Constraints']}<br>
-                    <strong>Use Constraints:</strong> ${data['Use Constraints']}<br>
-                    <strong>Extent:</strong> ${data.Extent}<br>
-                    <strong>Spatial Reference System:</strong> ${data['Spatial Reference System']}<br>
-                    <strong>Date Created:</strong> ${data['Date Created']}<br>
-                    <strong>Date Modified:</strong> ${data['Date Modified']}<br>
-                    <strong>Creator:</strong> ${data.Creator}<br>
-                    <strong>Publisher:</strong> ${data.Publisher}<br>
-                    <strong>Contact Information:</strong> ${data['Contact Information']}<br>
-                    <strong>License:</strong> ${data.License}<br>
-                    <strong>Maintenance Frequency:</strong> ${data['Maintenance Frequency']}<br>
-                    <strong>Spatial Resolution:</strong> ${data['Spatial Resolution']}<br>
-                    <strong>Temporal Resolution:</strong> ${data['Temporal Resolution']}<br>
-                    <strong>Quality Information:</strong> ${data['Quality Information']}<br>
-                    <strong>Source:</strong> ${data.Source}<br>
-                    <strong>Usage Notes:</strong> ${data['Usage Notes']}<br>
-                    <strong>Citation:</strong> ${data.Citation}<br>
-                    <strong>Acknowledgments:</strong> ${data.Acknowledgments}<br>
-                    <strong>Documentation:</strong> ${data.Documentation}
-                `;
-                alert(metadataInfo);
+                const subContent = document.createElement('div');
+                subContent.className = 'content';
+
+                const subLink = document.createElement('a');
+                subLink.className = 'link';
+                subLink.href = data.Link;
+                subLink.target = '_blank';
+                subLink.textContent = data.Sub;
+                subContent.appendChild(subLink);
+
+                const metadataLink = document.createElement('span');
+                metadataLink.className = 'metadata';
+                metadataLink.textContent = 'Metadata';
+                metadataLink.addEventListener('click', () => {
+                    const metadataInfo = `
+                        <strong>Title:</strong> ${data.Title}<br>
+                        <strong>Abstract:</strong> ${data.Abstract}<br>
+                        <strong>Keywords:</strong> ${data.Keywords}<br>
+                        <strong>Type:</strong> ${data.Type__1}<br>
+                        <strong>Format:</strong> ${data.Format}<br>
+                        <strong>Version:</strong> ${data.Version}<br>
+                        <strong>Access Constraints:</strong> ${data['Access Constraints']}<br>
+                        <strong>Use Constraints:</strong> ${data['Use Constraints']}<br>
+                        <strong>Extent:</strong> ${data.Extent}<br>
+                        <strong>Spatial Reference System:</strong> ${data['Spatial Reference System']}<br>
+                        <strong>Date Created:</strong> ${data['Date Created']}<br>
+                        <strong>Date Modified:</strong> ${data['Date Modified']}<br>
+                        <strong>Creator:</strong> ${data.Creator}<br>
+                        <strong>Publisher:</strong> ${data.Publisher}<br>
+                        <strong>Contact Information:</strong> ${data['Contact Information']}<br>
+                        <strong>License:</strong> ${data.License}<br>
+                        <strong>Maintenance Frequency:</strong> ${data['Maintenance Frequency']}<br>
+                        <strong>Spatial Resolution:</strong> ${data['Spatial Resolution']}<br>
+                        <strong>Temporal Resolution:</strong> ${data['Temporal Resolution']}<br>
+                        <strong>Quality Information:</strong> ${data['Quality Information']}<br>
+                        <strong>Source:</strong> ${data.Source}<br>
+                        <strong>Usage Notes:</strong> ${data['Usage Notes']}<br>
+                        <strong>Citation:</strong> ${data.Citation}<br>
+                        <strong>Acknowledgments:</strong> ${data.Acknowledgments}<br>
+                        <strong>Documentation:</strong> ${data.Documentation}
+                    `;
+                    alert(metadataInfo);
+                });
+                subContent.appendChild(metadataLink);
+
+                typeContent.appendChild(subContent);
+                mainItem.appendChild(typeContent);
+                treeView.appendChild(mainItem);
+
+                // Toggle visibility of the nested content
+                mainCollapsible.addEventListener('click', () => {
+                    mainCollapsible.classList.toggle('active');
+                    typeContent.style.display = typeContent.style.display === 'block' ? 'none' : 'block';
+                });
+
+                typeItem.addEventListener('click', () => {
+                    typeItem.classList.toggle('active');
+                    subContent.style.display = subContent.style.display === 'block' ? 'none' : 'block';
+                });
             });
-            metadataLink.appendChild(metadata);
-            subItem.appendChild(subLink);
-            subItem.appendChild(metadataLink);
-
-            typeItem.appendChild(subItem);
-            mainItem.appendChild(typeItem);
-            treeView.appendChild(mainItem);
-
-            mainCollapsible.addEventListener('click', () => {
-                mainCollapsible.classList.toggle('active');
-                typeItem.style.display = typeItem.style.display === 'block' ? 'none' : 'block';
-            });
-
-            typeCollapsible.addEventListener('click', () => {
-                typeCollapsible.classList.toggle('active');
-                subItem.style.display = subItem.style.display === 'block' ? 'none' : 'block';
-            });
-
-            typeItem.style.display = 'none';
-            subItem.style.display = 'none';
         });
     </script>
 </body>
