@@ -3,70 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collapsible Tree Menu with Metadata Popup</title>
+    <title>Tree Menu with Metadata</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<ul id="treeMenu"></ul>
+<div id="treeMenuContainer">
+    <ul id="treeMenu"></ul>
+</div>
 
 <!-- Metadata Popup -->
 <div id="metadataPopup" class="popup">
     <div class="popup-content">
-        <h2>Metadata</h2>
+        <span class="close" onclick="closePopup()">&times;</span>
         <div id="metadataContent"></div>
-        <button onclick="closePopup()">Close</button>
     </div>
 </div>
 
 <script src="data.js"></script>
-<script>
-    // Build the tree menu
-    const treeMenu = document.getElementById('treeMenu');
-
-    jsonData.forEach((item, index) => {
-        const mainItem = document.createElement('li');
-        mainItem.innerHTML = `<span class="collapsible">${item.main}</span>`;
-        treeMenu.appendChild(mainItem);
-
-        const content = document.createElement('ul');
-        content.className = 'content';
-        content.innerHTML = `
-            <li>Type: <span class="collapsible">${item.Type}</span></li>
-            <ul class="content">
-                <li>Sub: <a href="${item.Link}" target="_blank">${item.Sub}</a></li>
-                <li><span class="metadata" onclick="showMetadata(${index})">Metadata</span></li>
-            </ul>
-        `;
-        mainItem.appendChild(content);
-    });
-
-    // Toggle visibility of content
-    document.querySelectorAll('.collapsible').forEach((collapsible) => {
-        collapsible.addEventListener('click', () => {
-            collapsible.nextElementSibling.style.display =
-                collapsible.nextElementSibling.style.display === 'none' ? 'block' : 'none';
-        });
-    });
-
-    // Show metadata in popup
-    function showMetadata(index) {
-        const metadataContent = document.getElementById('metadataContent');
-        const item = jsonData[index];
-        metadataContent.innerHTML = '';
-        for (let key in item) {
-            if (!['main', 'Type', 'Sub', 'Link'].includes(key)) {
-                metadataContent.innerHTML += `<p><strong>${key}:</strong> ${item[key]}</p>`;
-            }
-        }
-        document.getElementById('metadataPopup').style.display = 'block';
-    }
-
-    // Close popup
-    function closePopup() {
-        document.getElementById('metadataPopup').style.display = 'none';
-    }
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
