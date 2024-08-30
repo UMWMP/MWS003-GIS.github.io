@@ -3,17 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON Data Viewer</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>JSON Tree View</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .collapsible {
+            cursor: pointer;
+            user-select: none;
+            margin: 5px 0;
+        }
+        .collapsible::before {
+            content: '▶';
+            font-size: 12px;
+            margin-right: 6px;
+        }
+        .active::before {
+            content: '▼';
+        }
+        .content {
+            display: none;
+        }
+        .link {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .metadata {
+            color: green;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div id="menu"></div>
-    <div id="popup" class="hidden">
-        <div id="popup-content"></div>
-        <button id="popup-close">Close</button>
-    </div>
+    <h1>JSON Data Tree View</h1>
+    <ul id="treeView"></ul>
 
     <script src="data.js"></script>
-    <script src="scriptdcw.js"></script>
+    <script>
+        const treeView = document.getElementById('treeView');
+
+        jsonData.forEach(data => {
+            const mainItem = document.createElement('li');
+            const mainCollapsible = document.createElement('div');
+            mainCollapsible.className = 'collapsible';
+            mainCollapsible.textContent = data.main;
+            mainItem.appendChild(mainCollapsible);
+
+            const typeItem = document.createElement('ul');
+            const typeCollapsible = document.createElement('div');
+            typeCollapsible.className = 'collapsible';
+            typeCollapsible.textContent = data.Type;
+            typeItem.appendChild(typeCollapsible);
+
+            const subItem = document.createElement('ul');
+            const subLink = document.createElement('li');
+            const link = document.createElement('a');
+            link.className = 'link';
+            link.href = data.Link;
+            link.target = '_blank';
+            link.textContent = data.Sub;
+            subLink.appendChild(link);
+
+            const metadataLink = document.createElement('li');
+            const metadata = document.createElement('span');
+            metadata.className = 'metadata';
+            metadata.textContent = 'Metadata';
+            metadata.addEventListener('click', () => {
+                const metadataInfo = `
+                    <strong>Title:</strong> ${data.Title}<br>
+                    <strong>Abstract:</strong> ${data.Abstract}<br>
+                    <strong>Keywords:</strong> ${data.Keywords}<br>
+                    <strong>Type:</strong> ${data.Type__1}<br>
+                    <strong>Format:</strong> ${data.Format}<br>
+                    <strong>Version:</strong> ${data.Version}<br>
+                    <strong>Access Constraints:</strong> ${data['Access Constraints']}<br>
+                    <strong>Use Constraints:</strong> ${data['Use Constraints']}<br>
+                    <strong>Extent:</strong> ${data.Extent}<br>
+                    <strong>Spatial Reference System:</strong> ${data['Spatial Reference System']}<br>
+                    <strong>Date Created:</strong> ${data['Date Created']}<br>
+                    <strong>Date Modified:</strong> ${data['Date Modified']}<br>
+                    <strong>Creator:</strong> ${data.Creator}<br>
+                    <strong>Publisher:</strong> ${data.Publisher}<br>
+                    <strong>Contact Information:</strong> ${data['Contact Information']}<br>
+                    <strong>License:</strong> ${data.License}<br>
+                    <strong>Maintenance Frequency:</strong> ${data['Maintenance Frequency']}<br>
+                    <strong>Spatial Resolution:</strong> ${data['Spatial Resolution']}<br>
+                    <strong>Temporal Resolution:</strong> ${data['Temporal Resolution']}<br>
+                    <strong>Quality Information:</strong> ${data['Quality Information']}<br>
+                    <strong>Source:</strong> ${data.Source}<br>
+                    <strong>Usage Notes:</strong> ${data['Usage Notes']}<br>
+                    <strong>Citation:</strong> ${data.Citation}<br>
+                    <strong>Acknowledgments:</strong> ${data.Acknowledgments}<br>
+                    <strong>Documentation:</strong> ${data.Documentation}
+                `;
+                alert(metadataInfo);
+            });
+            metadataLink.appendChild(metadata);
+            subItem.appendChild(subLink);
+            subItem.appendChild(metadataLink);
+
+            typeItem.appendChild(subItem);
+            mainItem.appendChild(typeItem);
+            treeView.appendChild(mainItem);
+
+            mainCollapsible.addEventListener('click', () => {
+                mainCollapsible.classList.toggle('active');
+                typeItem.style.display = typeItem.style.display === 'block' ? 'none' : 'block';
+            });
+
+            typeCollapsible.addEventListener('click', () => {
+                typeCollapsible.classList.toggle('active');
+                subItem.style.display = subItem.style.display === 'block' ? 'none' : 'block';
+            });
+
+            typeItem.style.display = 'none';
+            subItem.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
