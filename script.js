@@ -1,83 +1,46 @@
-// Function to create and populate the table
-function createTable(data) {
-    const table = document.createElement('table');
-    const headerRow = document.createElement('tr');
+// Build the tree menu
+const treeMenu = document.getElementById('treeMenu');
 
-    // Define table headers
-    const headers = ['Main', 'Type', 'Sub'];
-    headers.forEach(headerText => {
-        const header = document.createElement('th');
-        header.textContent = headerText;
-        headerRow.appendChild(header);
-    });
-    table.appendChild(headerRow);
+jsonData.forEach((item, index) => {
+    const mainItem = document.createElement('li');
+    mainItem.innerHTML = `<span class="collapsible">${item.main}</span>`;
+    treeMenu.appendChild(mainItem);
 
-    // Populate table with data
-    data.forEach(item => {
-        const row = document.createElement('tr');
-
-        const mainCell = document.createElement('td');
-        mainCell.textContent = item.main;
-        mainCell.classList.add('tree');
-        mainCell.addEventListener('click', function () {
-            row.nextElementSibling.classList.toggle('active');
-        });
-        row.appendChild(mainCell);
-
-        const typeCell = document.createElement('td');
-        typeCell.textContent = item.Type;
-        row.appendChild(typeCell);
-
-        const subRow = document.createElement('tr');
-        subRow.classList.add('nested');
-
-        const subCell = document.createElement('td');
-        const link = document.createElement('a');
-        link.href = item.Link;
-        link.textContent = item.Sub;
-        link.target = "_blank";
-        subCell.colSpan = headers.length;
-        subCell.appendChild(link);
-
-        const metadataBtn = document.createElement('span');
-        metadataBtn.textContent = ' (Metadata)';
-        metadataBtn.classList.add('metadata-btn');
-        metadataBtn.addEventListener('click', function (event) {
-            showPopup(event, item);
-        });
-        subCell.appendChild(metadataBtn);
-        subRow.appendChild(subCell);
-
-        table.appendChild(row);
-        table.appendChild(subRow);
-    });
-
-    document.getElementById('data-table').appendChild(table);
-}
-
-// Function to show metadata pop-up
-function showPopup(event, item) {
-    event.stopPropagation();
-    const popup = document.getElementById('metadata-popup');
-    let content = '';
-    for (let key in item) {
-        if (key !== 'main' && key !== 'Type' && key !== 'Sub' && key !== 'Link') {
-            content += `<strong>${key}</strong>: ${item[key]}<br>`;
-        }
-    }
-    popup.innerHTML = content;
-    popup.style.left = event.pageX + 'px';
-    popup.style.top = event.pageY + 'px';
-    popup.classList.add('active');
-}
-
-// Hide popup when clicking outside
-document.addEventListener('click', function(event) {
-    const popup = document.getElementById('metadata-popup');
-    if (!event.target.closest('.metadata-btn')) {
-        popup.classList.remove('active');
-    }
+    const content = document.createElement('ul');
+    content.className = 'content';
+    content.innerHTML = `
+        <li>Type: <span class="collapsible">${item.Type}</span></li>
+        <ul class="content">
+            <li>Sub: <a href="${item.Link}" target="_blank">${item.Sub}</a></li>
+            <li><span class="metadata" onclick="showMetadata(${index})">Metadata</span></li>
+        </ul>
+    `;
+    mainItem.appendChild(content);
 });
 
-// Initialize the table with JSON data
-createTable(jsonData);
+// Toggle visibility of content
+document.querySelectorAll('.collapsible').forEach((collapsible) => {
+    collapsible.addEventListener('click', () => {
+        const content = collapsible.nextElementSibling;
+        content.style.display = content.style.display === 'none' ? 'block' : 'none';
+        collapsible.classList.toggle('active');
+    });
+});
+
+// Show metadata in popup
+function showMetadata(index) {
+    const metadataContent = document.getElementById('metadataContent');
+    const item = jsonData[index];
+    metadataContent.innerHTML = '';
+    for (let key in item) {
+        if (!['main', 'Type', 'Sub', 'Link'].includes(key)) {
+            metadataContent.innerHTML += `<p><strong>${key}:</strong> ${item[key]}</p>`;
+        }
+    }
+    document.getElementById('metadataPopup').style.display = 'block';
+}
+
+// Close popup
+function closePopup() {
+    document.getElementById('metadataPopup').style.display = 'none';
+}
