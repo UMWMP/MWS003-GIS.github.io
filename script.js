@@ -1,59 +1,65 @@
-// Function to build the tree menu
-function buildTreeMenu() {
-    const treeMenu = document.getElementById('treeMenu');
+document.addEventListener('DOMContentLoaded', function() {
+    const data = jsonData;
+    const menu = document.getElementById('menu');
+    const popup = document.getElementById('popup');
+    const popupContent = document.getElementById('popup-content');
+    const popupClose = document.getElementById('popup-close');
 
-    jsonData.forEach((item, index) => {
-        // Create main item
-        const mainItem = document.createElement('li');
-        mainItem.innerHTML = `<span class="collapsible">${item.main}</span>`;
-        treeMenu.appendChild(mainItem);
+    function createTree(data) {
+        const tree = document.createElement('ul');
 
-        // Create the content that collapses
-        const content = document.createElement('ul');
-        content.className = 'content';
-        content.style.display = 'none';  // Start hidden
-        content.innerHTML = `
-            <li>Type: <span class="collapsible">${item.Type}</span></li>
-            <ul class="content" style="display: none;">
-                <li>Sub: <a href="${item.Link}" target="_blank">${item.Sub}</a></li>
-                <li><span class="metadata" onclick="showMetadata(${index})">Metadata</span></li>
-            </ul>
-        `;
-        mainItem.appendChild(content);
-    });
+        data.forEach(item => {
+            const li = document.createElement('li');
+            li.classList.add('tree-item');
+            
+            const title = document.createElement('span');
+            title.textContent = `${item.main} - ${item.Type}`;
+            li.appendChild(title);
 
-    // Attach event listeners for collapsing
-    document.querySelectorAll('.collapsible').forEach((collapsible) => {
-        collapsible.addEventListener('click', function() {
-            this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';
-            this.classList.toggle('active');
+            // Create metadata link
+            const metadataLink = document.createElement('a');
+            metadataLink.href = '#';
+            metadataLink.textContent = 'Metadata';
+            metadataLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                showPopup(item);
+            });
+            li.appendChild(metadataLink);
+
+            // Create link
+            const link = document.createElement('a');
+            link.href = item.Link;
+            link.textContent = 'View on Map';
+            link.target = '_blank';
+            li.appendChild(link);
+
+            // Add sub-items
+            const subUl = document.createElement('ul');
+            const subLi = document.createElement('li');
+            subLi.textContent = item.Sub;
+            subUl.appendChild(subLi);
+
+            li.appendChild(subUl);
+            tree.appendChild(li);
         });
-    });
-}
 
-// Function to show metadata in a popup
-function showMetadata(index) {
-    const metadataContent = document.getElementById('metadataContent');
-    const item = jsonData[index];
-    metadataContent.innerHTML = '';  // Clear previous content
-
-    // Populate metadata
-    for (let key in item) {
-        if (!['main', 'Type', 'Sub', 'Link'].includes(key)) {
-            metadataContent.innerHTML += `<p><strong>${key}:</strong> ${item[key]}</p>`;
-        }
+        return tree;
     }
 
-    // Show the popup
-    document.getElementById('metadataPopup').style.display = 'block';
-}
+    function showPopup(item) {
+        let content = '<h2>Metadata</h2>';
+        for (const [key, value] of Object.entries(item)) {
+            if (key && key !== 'main' && key !== 'Type' && key !== 'Sub' && key !== 'Link') {
+                content += `<p><strong>${key}:</strong> ${value}</p>`;
+            }
+        }
+        popupContent.innerHTML = content;
+        popup.classList.remove('hidden');
+    }
 
-// Function to close the metadata popup
-function closePopup() {
-    document.getElementById('metadataPopup').style.display = 'none';
-}
+    popupClose.addEventListener('click', function() {
+        popup.classList.add('hidden');
+    });
 
-// Build the tree menu when the page loads
-window.onload = function() {
-    buildTreeMenu();
-};
+    menu.appendChild(createTree(data));
+});
