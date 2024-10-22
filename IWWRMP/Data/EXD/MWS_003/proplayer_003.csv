@@ -9,7 +9,7 @@ ID,MWS,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,Download,geoj
 8,UMW,Topography,DEM,,IWMI,Derive,Yes,Raster,,,,2024
 9,UMW,Topography,Slope,,IWMI,Derive,Yes,Raster,,,,2024
 10,MWS-003,Soil,Soil type,,NRMC,Raw,Yes,Vector,,,,2010
-11,MWS-003,Climate,Agro-ecological zone,,NRMC,Raw,Yes,Vector,,,,2010
+11,MWS-003,Climate,Agro-ecological zone,,NRMC,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/MWS_003/RF_1.png,2010
 12,MWS-003,Risk and Hazard,Landslide hazard zone,,NBRO,Raw,Yes,Vector,,,,2020
 13,MWS-003,Risk and Hazard,Flood,,,,Yes,Vector,,,,
 14,MWS-003,Risk and Hazard,Forest Fire,,IWMI,Derive,Yes,Vector,,,,2024
