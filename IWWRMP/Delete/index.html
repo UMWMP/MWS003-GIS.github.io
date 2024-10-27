@@ -27,7 +27,7 @@
 <script>
 $(document).ready(function() {
     // Initialize the map
-    const map = L.map('map').setView([0, 0], 2); // Adjust the view as necessary
+    const map = L.map('map').setView([50.5, 30.5], 5); // Set to a suitable view for the given coordinates
 
     // Add a tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -56,40 +56,78 @@ $(document).ready(function() {
             }
         }
 
-        // Load GeoJSON files
+        // Load GeoJSON files (for demonstration, using the provided GeoJSON directly)
         loadGeoJSON('land_cover.geojson', layerConfig['land_cover']);
-        loadGeoJSON('soil_type.geojson', layerConfig['soil_type']);
-        loadGeoJSON('district_boundary.geojson', layerConfig['district_boundary']);
+        // Uncomment the next lines when the actual GeoJSON files are available
+        // loadGeoJSON('soil_type.geojson', layerConfig['soil_type']);
+        // loadGeoJSON('district_boundary.geojson', layerConfig['district_boundary']);
     });
 
     // Function to load GeoJSON data and add to the map
     function loadGeoJSON(url, config) {
-        $.getJSON(url, function(data) {
-            L.geoJSON(data, {
-                style: function(feature) {
-                    console.log(feature.properties); // Log feature properties for debugging
-                    const attribute = feature.properties.attribute; // Adjust this based on your GeoJSON
-                    const layerStyle = config.find(item => item.attribute === attribute); // Match the attribute
-
-                    if (layerStyle) {
-                        return {
-                            color: layerStyle.color || '#000000',
-                            fillColor: layerStyle.fillColor || 'rgba(0,0,0,0.5)',
-                            weight: 2,
-                            fillOpacity: 0.5
-                        };
-                    } else {
-                        console.warn(`No matching style for attribute: ${attribute}`); // Warn if no match found
-                        return {
-                            color: '#000000',
-                            fillColor: 'rgba(0,0,0,0.5)',
-                            weight: 2,
-                            fillOpacity: 0.5
-                        };
+        // For demonstration, using static GeoJSON data
+        const geojsonData = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "lc": "A",
+                        "name": "Forest Area"
+                    },
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [[[30.5, 50.5], [30.6, 50.6], [30.7, 50.5], [30.5, 50.5]]]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "lc": "B",
+                        "name": "Grassland"
+                    },
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [[[30.8, 50.8], [30.9, 50.9], [31.0, 50.8], [30.8, 50.8]]]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "lc": "C",
+                        "name": "Urban Area"
+                    },
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [[[31.1, 50.1], [31.2, 50.2], [31.3, 50.1], [31.1, 50.1]]]
                     }
                 }
-            }).addTo(map);
-        });
+            ]
+        };
+
+        L.geoJSON(geojsonData, {
+            style: function(feature) {
+                const lcValue = feature.properties.lc; // Use the 'lc' property from your GeoJSON
+                const layerStyle = config.find(item => item.attribute === lcValue); // Match the attribute
+
+                if (layerStyle) {
+                    return {
+                        color: layerStyle.color || '#000000',
+                        fillColor: layerStyle.fillColor || 'rgba(0,0,0,0.5)',
+                        weight: 2,
+                        fillOpacity: 0.5
+                    };
+                } else {
+                    console.warn(`No matching style for lc: ${lcValue}`); // Warn if no match found
+                    return {
+                        color: '#000000',
+                        fillColor: 'rgba(0,0,0,0.5)',
+                        weight: 2,
+                        fillOpacity: 0.5
+                    };
+                }
+            }
+        }).addTo(map);
     }
 });
 </script>
