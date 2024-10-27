@@ -1,6 +1,6 @@
 ID,MWS,Group,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,Download,geojson,Year
 ,UMW,Climate,Station ,Rainfall,,MD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/02_HYD/Hydro_Pt/HY_Hydro_Pt_MWS_003.geojson,
-,UMW,Climate,Station ,Temporature,,MD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/,
+,UMW,Climate,Station ,Temporature,,MD,Raw,Yes,Vector,,,	https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_03_Lanslides_V1.geojson,
 ,UMW,Climate,Station ,Evoporation,,MD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/10_MET/EV_St/,
 ,UMW,Climate,Station ,Water Quality,,WB,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/13_WI/Level 2/Max_Water_Intake_St_Data.geojson,
 ,UMW,Climate,Raster,Annual Rainfall,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/RF_sum.png,
