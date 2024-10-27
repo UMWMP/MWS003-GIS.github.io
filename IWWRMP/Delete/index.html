@@ -40,10 +40,19 @@ $(document).ready(function() {
         const lines = data.split('\n').map(line => line.split(','));
         const layerConfig = {};
 
+        // Parse CSV data
         for (let i = 1; i < lines.length; i++) {
-            const [type, color] = lines[i];
-            if (type && color) {
-                layerConfig[type] = color.trim();
+            const [layer_name, attribute, type, color, fillColor] = lines[i];
+            if (layer_name && color && fillColor) {
+                if (!layerConfig[layer_name]) {
+                    layerConfig[layer_name] = [];
+                }
+                layerConfig[layer_name].push({
+                    attribute,
+                    type,
+                    color: color.trim(),
+                    fillColor: fillColor.trim()
+                });
             }
         }
 
@@ -54,11 +63,22 @@ $(document).ready(function() {
     });
 
     // Function to load GeoJSON data and add to the map
-    function loadGeoJSON(url, color) {
+    function loadGeoJSON(url, config) {
         $.getJSON(url, function(data) {
             L.geoJSON(data, {
-                style: function() {
-                    return { color: color || '#000000' }; // Default color if none specified
+                style: function(feature) {
+                    const layerStyle = config.find(item => item.attribute === feature.properties.attribute); // Use your actual property to match
+                    return layerStyle ? {
+                        color: layerStyle.color || '#000000',
+                        fillColor: layerStyle.fillColor || 'rgba(0,0,0,0.5)',
+                        weight: 2,
+                        fillOpacity: 0.5
+                    } : {
+                        color: '#000000',
+                        fillColor: 'rgba(0,0,0,0.5)',
+                        weight: 2,
+                        fillOpacity: 0.5
+                    };
                 }
             }).addTo(map);
         });
