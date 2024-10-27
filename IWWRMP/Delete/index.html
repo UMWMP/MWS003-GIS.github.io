@@ -3,73 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSV Parser Example</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>GeoJSON Layer Display</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-        }
-        #output {
-            margin-top: 20px;
-        }
-        .error {
-            color: red;
         }
     </style>
 </head>
 <body>
 
-<h1>CSV Parser Example</h1>
-<input type="file" id="fileInput" accept=".csv" />
-<div id="output"></div>
+<h1>GeoJSON Layer Display with Colors from CSV</h1>
+<div id="map"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
 $(document).ready(function() {
-    $('#fileInput').change(function(event) {
-        const file = event.target.files[0];
-        if (!file) {
-            return;
+    // Initialize the map
+    const map = L.map('map').setView([0, 0], 2); // Adjust the view as necessary
+
+    // Add a tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // Load layer configuration from CSV
+    $.get('layer_config.csv', function(data) {
+        const lines = data.split('\n').map(line => line.split(','));
+        const layerConfig = {};
+
+        for (let i = 1; i < lines.length; i++) {
+            const [type, color] = lines[i];
+            if (type && color) {
+                layerConfig[type] = color.trim();
+            }
         }
 
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const data = e.target.result;
-            parseCSV(data);
-        };
-        reader.readAsText(file);
+        // Load GeoJSON files
+        loadGeoJSON('land_cover.geojson', layerConfig['land_cover']);
+        loadGeoJSON('soil_type.geojson', layerConfig['soil_type']);
+        loadGeoJSON('district_boundary.geojson', layerConfig['district_boundary']);
     });
 
-    function parseCSV(data) {
-        const rows = data.split('\n');
-        const header = rows[0].split(',');
-        const outputDiv = $('#output');
-        outputDiv.empty(); // Clear previous output
-        let errorMessages = [];
-
-        for (let i = 1; i < rows.length; i++) {
-            const cols = rows[i].split(',');
-            if (cols.length !== header.length) {
-                const errorMsg = `Warning: Skipped line due to header mismatch: ${rows[i]}`;
-                console.warn(errorMsg);
-                errorMessages.push(errorMsg);
-                continue; // Skip this row
-            }
-
-            // Create a div for each valid row
-            const rowDiv = $('<div>').text(`Row ${i}: ${rows[i]}`);
-            outputDiv.append(rowDiv);
-        }
-
-        if (errorMessages.length > 0) {
-            const errorDiv = $('<div>').addClass('error');
-            errorDiv.text('Errors encountered:');
-            outputDiv.prepend(errorDiv);
-            errorMessages.forEach(msg => {
-                const errorMsgDiv = $('<div>').text(msg);
-                errorDiv.append(errorMsgDiv);
-            });
-        }
+    // Function to load GeoJSON data and add to the map
+    function loadGeoJSON(url, color) {
+        $.getJSON(url, function(data) {
+            L.geoJSON(data, {
+                style: function() {
+                    return { color: color || '#000000' }; // Default color if none specified
+                }
+            }).addTo(map);
+        });
     }
 });
 </script>
