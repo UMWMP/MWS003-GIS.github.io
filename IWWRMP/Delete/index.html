@@ -3,98 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoJSON Layer Visualization</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <title>CSV Parser Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        #map {
-            height: 100vh; /* Full height for the map */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
-    <div id="map"></div>
 
-    <script>
-        // Initialize the map
-        const map = L.map('map').setView([0, 0], 2); // Set initial view to world
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
+<h1>CSV Parser Example</h1>
+<input type="file" id="fileInput" accept=".csv" />
+<div id="output"></div>
 
-        // Function to parse CSV data
-function parseCSV(data) {
-    const rows = data.split('\n');
-    const header = rows[0].split(',');
-    for (let i = 1; i < rows.length; i++) {
-        const cols = rows[i].split(',');
-        if (cols.length !== header.length) {
-            console.warn(`Skipped line due to header mismatch: ${rows[i]}`);
-            continue; // Skip this row
+<script>
+$(document).ready(function() {
+    $('#fileInput').change(function(event) {
+        const file = event.target.files[0];
+        if (!file) {
+            return;
         }
-        // Process the row...
-    }
-}
 
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const data = e.target.result;
+            parseCSV(data);
+        };
+        reader.readAsText(file);
+    });
 
-        // Load CSV file
-        $.ajax({
-            url: 'layer_config.csv', // Path to your CSV file
-            dataType: 'text',
-        }).done(function(data) {
-            const layerConfig = parseCSV(data);
-            loadLayers(layerConfig);
-        });
+    function parseCSV(data) {
+        const rows = data.split('\n');
+        const header = rows[0].split(',');
+        const outputDiv = $('#output');
+        outputDiv.empty(); // Clear previous output
+        let errorMessages = [];
 
-        // Load GeoJSON layers based on configuration
-        function loadLayers(layerConfig) {
-            const layers = {};
+        for (let i = 1; i < rows.length; i++) {
+            const cols = rows[i].split(',');
+            if (cols.length !== header.length) {
+                const errorMsg = `Warning: Skipped line due to header mismatch: ${rows[i]}`;
+                console.warn(errorMsg);
+                errorMessages.push(errorMsg);
+                continue; // Skip this row
+            }
 
-            layerConfig.forEach(layer => {
-                const { layer_name, attribute, type, color, fillColor } = layer;
-                let geojsonData;
+            // Create a div for each valid row
+            const rowDiv = $('<div>').text(`Row ${i}: ${rows[i]}`);
+            outputDiv.append(rowDiv);
+        }
 
-                // Load GeoJSON data for each layer
-                switch (layer_name) {
-                    case 'land_cover':
-                        geojsonData = 'land_cover.geojson';
-                        break;
-                    case 'soil_type':
-                        geojsonData = 'soil_type.geojson';
-                        break;
-                    case 'district_boundary':
-                        geojsonData = 'district_boundary.geojson';
-                        break;
-                    default:
-                        console.warn(`No GeoJSON data for layer: ${layer_name}`);
-                        return; // Skip if layer name does not match
-                }
-
-                // Fetch the GeoJSON file
-                $.getJSON(geojsonData, function(data) {
-                    const style = {
-                        color: color,
-                        fillColor: fillColor,
-                        weight: 2,
-                        opacity: 1,
-                        fillOpacity: 0.5
-                    };
-
-                    // Create GeoJSON layer and add it to the map
-                    const geoJsonLayer = L.geoJSON(data, {
-                        style: style,
-                        onEachFeature: function (feature, layer) {
-                            layer.bindPopup(`${layer_name} - ${attribute}: ${type}`);
-                        }
-                    });
-
-                    geoJsonLayer.addTo(map);
-                    layers[layer_name] = geoJsonLayer;
-                });
+        if (errorMessages.length > 0) {
+            const errorDiv = $('<div>').addClass('error');
+            errorDiv.text('Errors encountered:');
+            outputDiv.prepend(errorDiv);
+            errorMessages.forEach(msg => {
+                const errorMsgDiv = $('<div>').text(msg);
+                errorDiv.append(errorMsgDiv);
             });
         }
-    </script>
+    }
+});
+</script>
+
 </body>
 </html>
