@@ -7,107 +7,105 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         #map {
-            height: 600px;
+            height: 100vh; /* Full height for the map */
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
-    <h1>GeoJSON Layer Visualization</h1>
     <div id="map"></div>
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        // Initialize the map
+        const map = L.map('map').setView([0, 0], 2); // Set initial view to world
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
 
-    const map = L.map('map').setView([30, 50], 10); // Set initial view to world
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
-    }).addTo(map);
+        // Function to parse CSV data
+        function parseCSV(data) {
+            const lines = data.trim().split('\n');
+            const result = [];
+            const headers = lines[0].split(',').map(header => header.trim());
 
-    // Function to parse CSV data
-    function parseCSV(data) {
-        const lines = data.trim().split('\n');
-        const result = [];
-        const headers = lines[0].split(',').map(header => header.trim());
+            for (let i = 1; i < lines.length; i++) {
+                const currentLine = lines[i].trim();
+                if (!currentLine) continue;
 
-        for (let i = 1; i < lines.length; i++) {
-            const currentLine = lines[i].trim();
-            if (!currentLine) continue;
+                const obj = {};
+                const values = currentLine.split(',');
 
-            const obj = {};
-            const values = currentLine.split(',');
+                if (values.length !== headers.length) {
+                    console.warn(`Warning: Skipped line due to header mismatch: ${currentLine}`);
+                    continue;
+                }
 
-            if (values.length !== headers.length) {
-                console.warn(`Warning: Skipped line due to header mismatch: ${currentLine}`);
-                continue;
+                for (let j = 0; j < headers.length; j++) {
+                    obj[headers[j]] = values[j].trim();
+                }
+                result.push(obj);
             }
-
-            for (let j = 0; j < headers.length; j++) {
-                obj[headers[j]] = values[j].trim();
-            }
-            result.push(obj);
+            return result;
         }
-        return result;
-    }
 
-    // Load CSV file
-    $.ajax({
-        url: 'layer_config.csv', // Path to your CSV file
-        dataType: 'text',
-    }).done(function(data) {
-        const layerConfig = parseCSV(data);
-        loadLayers(layerConfig);
-    });
-
-    // Load GeoJSON layers based on configuration
-    function loadLayers(layerConfig) {
-        const layers = {};
-
-        layerConfig.forEach(layer => {
-            const { layer_name, attribute, type, color, fillColor } = layer;
-            let geojsonData;
-
-            // Load GeoJSON data for each layer
-            switch (layer_name) {
-                case 'land_cover':
-                    geojsonData = 'land_cover.geojson';
-                    break;
-                case 'soil_type':
-                    geojsonData = 'soil_type.geojson';
-                    break;
-                case 'district_boundary':
-                    geojsonData = 'district_boundary.geojson';
-                    break;
-                default:
-                    console.warn(`No GeoJSON data for layer: ${layer_name}`);
-                    return; // Skip if layer name does not match
-            }
-
-            // Fetch the GeoJSON file
-            $.getJSON(geojsonData, function(data) {
-                const style = {
-                    color: color,
-                    fillColor: fillColor,
-                    weight: 2,
-                    opacity: 1,
-                    fillOpacity: 0.5
-                };
-
-                // Create GeoJSON layer and add it to the map
-                const geoJsonLayer = L.geoJSON(data, {
-                    style: style,
-                    onEachFeature: function (feature, layer) {
-                        layer.bindPopup(`${layer_name} - ${attribute}: ${type}`);
-                    }
-                });
-
-                geoJsonLayer.addTo(map);
-                layers[layer_name] = geoJsonLayer;
-            });
+        // Load CSV file
+        $.ajax({
+            url: 'layer_config.csv', // Path to your CSV file
+            dataType: 'text',
+        }).done(function(data) {
+            const layerConfig = parseCSV(data);
+            loadLayers(layerConfig);
         });
-    }
-</script>
 
+        // Load GeoJSON layers based on configuration
+        function loadLayers(layerConfig) {
+            const layers = {};
+
+            layerConfig.forEach(layer => {
+                const { layer_name, attribute, type, color, fillColor } = layer;
+                let geojsonData;
+
+                // Load GeoJSON data for each layer
+                switch (layer_name) {
+                    case 'land_cover':
+                        geojsonData = 'land_cover.geojson';
+                        break;
+                    case 'soil_type':
+                        geojsonData = 'soil_type.geojson';
+                        break;
+                    case 'district_boundary':
+                        geojsonData = 'district_boundary.geojson';
+                        break;
+                    default:
+                        console.warn(`No GeoJSON data for layer: ${layer_name}`);
+                        return; // Skip if layer name does not match
+                }
+
+                // Fetch the GeoJSON file
+                $.getJSON(geojsonData, function(data) {
+                    const style = {
+                        color: color,
+                        fillColor: fillColor,
+                        weight: 2,
+                        opacity: 1,
+                        fillOpacity: 0.5
+                    };
+
+                    // Create GeoJSON layer and add it to the map
+                    const geoJsonLayer = L.geoJSON(data, {
+                        style: style,
+                        onEachFeature: function (feature, layer) {
+                            layer.bindPopup(`${layer_name} - ${attribute}: ${type}`);
+                        }
+                    });
+
+                    geoJsonLayer.addTo(map);
+                    layers[layer_name] = geoJsonLayer;
+                });
+            });
+        }
+    </script>
 </body>
 </html>
