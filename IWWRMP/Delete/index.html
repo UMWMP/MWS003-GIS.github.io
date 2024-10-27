@@ -25,30 +25,19 @@
         }).addTo(map);
 
         // Function to parse CSV data
-        function parseCSV(data) {
-            const lines = data.trim().split('\n');
-            const result = [];
-            const headers = lines[0].split(',').map(header => header.trim());
-
-            for (let i = 1; i < lines.length; i++) {
-                const currentLine = lines[i].trim();
-                if (!currentLine) continue;
-
-                const obj = {};
-                const values = currentLine.split(',');
-
-                if (values.length !== headers.length) {
-                    console.warn(`Warning: Skipped line due to header mismatch: ${currentLine}`);
-                    continue;
-                }
-
-                for (let j = 0; j < headers.length; j++) {
-                    obj[headers[j]] = values[j].trim();
-                }
-                result.push(obj);
-            }
-            return result;
+function parseCSV(data) {
+    const rows = data.split('\n');
+    const header = rows[0].split(',');
+    for (let i = 1; i < rows.length; i++) {
+        const cols = rows[i].split(',');
+        if (cols.length !== header.length) {
+            console.warn(`Skipped line due to header mismatch: ${rows[i]}`);
+            continue; // Skip this row
         }
+        // Process the row...
+    }
+}
+
 
         // Load CSV file
         $.ajax({
