@@ -1,5 +1,5 @@
 ID,MWS,Group,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,Download,geojson,Year
-,UMW,Climate,Station ,Rainfall,,MD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/01_ADM/DSD/EXD_01_ADM_%20DSD_PATHAHEWAHETA.geojson,
+,UMW,Climate,Station ,Rainfall,,MD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/RF_sum.png,
 ,UMW,Climate,Station ,Temporature,,MD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/01_ADM/DSD/EXD_01_ADM_%20DSD_PATHAHEWAHETA.geojson,
 ,UMW,Climate,Station ,Evoporation,,MD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/01_ADM/DSD/EXD_01_ADM_%20DSD_PATHAHEWAHETA.geojson,
 ,UMW,Climate,Station ,Water Quality,,WB,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/01_ADM/DSD/EXD_01_ADM_%20DSD_PATHAHEWAHETA.geojson,
