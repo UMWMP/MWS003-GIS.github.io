@@ -18,7 +18,7 @@ ID,MWS,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,Download,geoj
 17,UMW,Hydrology,Mini watershed,,IWMI,Derive,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/UMW/MWS_Boundary_Updated_UMC_Names.geojson,2024
 18,MWS-003,Proposal Soil,Soil Conservation,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_03_Soil_Conservation_ON_site_and_OFF_site_V1.csv,2024
 19,MWS-003,Proposal Soil,Non-point source pollution,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_03_Non_point_source_pollution_V1.csv,2024
-20,MWS-003,Proposal Soil,Lanslides,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_03_Lanslides_V1.csv,2024
+20,MWS-003,Proposal Irri,Lanslides,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_03_Lanslides_V1.csv,2024
 21,MWS-003,Proposal Soil,Household Waste,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_03_Household_Waste_V1.csv,2024
 22,MWS-003,Report,Watershed managment plan,,IWMI,Derive,No,Text,,,,2024
 23,MWS-003,Map,Atlas,,IWMI,Derive,No,Image,,,,2024
