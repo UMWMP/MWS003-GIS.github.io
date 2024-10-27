@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoJSON Map with CSV Config</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>GeoJSON Map Visualization with CSV Config</h1>
+    <div id="map"></div>
+    
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        // Initialize the map
+        const map = L.map('map').setView([50.5, 30.5], 6);
+
+        // Set up the tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Load the CSV file
+        $.get('layer_config.csv', function(data) {
+            const layersConfig = parseCSV(data);
+            loadGeoJSONLayers(layersConfig);
+        });
+
+        // Function to parse CSV data
+        function parseCSV(data) {
+            const lines = data.split('\n');
+            const result = [];
+            const headers = lines[0].split(',');
+
+            for (let i = 1; i < lines.length; i++) {
+                const obj = {};
+                const currentLine = lines[i].split(',');
+
+                for (let j = 0; j < headers.length; j++) {
+                    obj[headers[j].trim()] = currentLine[j].trim();
+                }
+                result.push(obj);
+            }
+            return result;
+        }
+
+        // Load GeoJSON layers based on the CSV configuration
+        function loadGeoJSONLayers(layersConfig) {
+            layersConfig.forEach(config => {
+                // Here you need to provide the correct URL or path to your GeoJSON files
+                let geojsonUrl;
+                switch (config.layer_name) {
+                    case 'land_cover':
+                        geojsonUrl = 'land_cover..geojson'; // Replace with your actual GeoJSON path
+                        break;
+                    case 'soil_type':
+                        geojsonUrl = 'soil_type..geojson'; // Replace with your actual GeoJSON path
+                        break;
+                    case 'district_boundary':
+                        geojsonUrl = 'district_boundary..geojson'; // Replace with your actual GeoJSON path
+                        break;
+                    default:
+                        console.warn(`No GeoJSON file defined for layer: ${config.layer_name}`);
+                        return;
+                }
+
+                // Fetch the GeoJSON file
+                $.getJSON(geojsonUrl, function(geojsonData) {
+                    // Style each feature based on the CSV config
+                    const layerStyle = {
+                        fillColor: config.fillColor,
+                        color: config.color,
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: 0.5
+                    };
+
+                    // Add GeoJSON layer to the map
+                    L.geoJSON(geojsonData, {
+                        style: function(feature) {
+                            return layerStyle;
+                        },
+                        onEachFeature: function(feature, layer) {
+                            layer.bindPopup(feature.properties.name || 'Unnamed');
+                        }
+                    }).addTo(map);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
