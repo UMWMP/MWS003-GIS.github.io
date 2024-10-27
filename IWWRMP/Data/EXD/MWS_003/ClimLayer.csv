@@ -3,7 +3,7 @@ ID,MWS,Group,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,Downloa
 ,UMW,Climate,Station ,Temporature,,MD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/01_ADM/DSD/EXD_01_ADM_%20DSD_PATHAHEWAHETA.geojson,
 ,UMW,Climate,Station ,Evoporation,,MD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/01_ADM/DSD/EXD_01_ADM_%20DSD_PATHAHEWAHETA.geojson,
 ,UMW,Climate,Station ,Water Quality,,WB,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/01_ADM/DSD/EXD_01_ADM_%20DSD_PATHAHEWAHETA.geojson,
-,UMW,Climate,Raster,Annual Rainfall,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/RF_sum.png,
+,UMW,Climate,Raster,Annual Rainfall,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/01_ADM/DSD/EXD_01_ADM_%20DSD_PATHAHEWAHETA.geojson,
 ,UMW,Climate,Rainfall,Monthly Rainfall - 01,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/RF_1.png,
 ,UMW,Climate,Rainfall,Monthly Rainfall - 02,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/RF_2.png,
 ,UMW,Climate,Rainfall,Monthly Rainfall - 03,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/RF_3.png,
