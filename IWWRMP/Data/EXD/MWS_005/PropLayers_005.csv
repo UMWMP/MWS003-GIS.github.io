@@ -1,0 +1,14 @@
+ID,MWS,Group,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,Download,geojson,Year
+21,MWS-005,Proposal,Proposal Irri,Soil Conservation,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_05_Soil_Conservation_ON_site_and_OFF_site_V1.geojson,2024
+22,MWS-005,Proposal,Proposal Soil,Non-point source pollution,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_05_Non_point_source_pollution_V1.geojson,2024
+23,MWS-005,Proposal,Proposal Soil,Lanslides,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_05_Lanslides_V1.geojson,2024
+24,MWS-005,Proposal,Proposal Soil,Household Waste,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_05_Household_Waste_V1.geojson,2024
+25,MWS-005,Report,Report,Watershed managment plan,,IWMI,Derive,No,Text,,,,2024
+26,MWS-005,Map,Map,Atlas,,IWMI,Derive,No,Image,,,,2024
+27,MWS-005,Photo,Photo,Photo,,IWMI,Derive,Yes,Photo,,,,2024
+28,MWS-005,Detail,Location,Building,,SD,Raw,Yes,Vector,,,,
+29,MWS-005,Detail,Water features,Water features-point,,SD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/02_HYD/Hydro_Pt/HY_Hydro_Pt_MWS_005.geojson,
+30,MWS-005,Detail,Water features,Water features-line,,SD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/02_HYD/Hydro_Li/HY_Hydro_Li_MWS_005.geojson,
+31,MWS-005,Detail,Water features,Water features-polygon,,SD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/02_HYD/Hydro_Pg/HY_Hydro_Pg_MWS_005.geojson,
+32,MWS-005,Detail,Trasport,Raod,,SD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/08_TRP/TR_Transport/TR_Transport_Pt_MWS_005.geojson,
+33,MWS-005,Detail,Location ,Places,,,,,,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/09_PLC/CA_Toponym/CA_Toponym_Pt_MWS_005.geojson,
