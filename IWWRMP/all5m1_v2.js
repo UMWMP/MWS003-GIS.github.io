@@ -506,7 +506,7 @@ const styleOptions = {
     layer2: { color: "#0000FF", weight: 1, fillOpacity: 0.3 },
     layer3: { color: "#00FF00", weight: 3, fillOpacity: 0.7 },
     "District Boundary": { color: "Black", weight: 5, dashArray: "5, 5", fillOpacity: 0 },
-    "DSD Boundary": { color: "Brown", weight: 2.5, dashArray: "5, 5", fillOpacity: 0 },
+    "DSD Bounday": { color: "Brown", weight: 2.5, dashArray: "5, 5", fillOpacity: 0 },
     "GN Boundary": { color: "Orange", weight: 2, dashArray: "5, 5", fillOpacity: 0 },
     
     // Land cover-specific styles
