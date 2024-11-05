@@ -1,21 +1,22 @@
 // Define a color map for unique classes
 var colorMap = {
-    "Forest": { color: "#006400", fillOpacity: 0.6, weight: 2 },              // Dark green for Forest
-    "Forest Plantation": { color: "#228B22", fillOpacity: 0.6, weight: 2 },   // Lighter green for Forest Plantation
-    "urban": { color: "#808080", fillOpacity: 0.7, weight: 2 },               // Gray for Urban
-    "Paddy": { color: "#FFD700", fillOpacity: 0.4, weight: 2 },               // Golden for Paddy
-    "Tea": { color: "#8B4513", fillOpacity: 0.5, weight: 2 },                 // Saddle brown for Tea
-    "Perennials": { color: "#556B2F", fillOpacity: 0.5, weight: 2 },          // Dark olive green for Perennials
-    "Seasonal crop": { color: "#32CD32", fillOpacity: 0.4, weight: 2 },       // Lime green for Seasonal crop
-    "Bareland": { color: "#D2B48C", fillOpacity: 0.5, weight: 2 },            // Tan for Bareland
-    "Farms/other": { color: "#B8860B", fillOpacity: 0.5, weight: 2 },         // Dark goldenrod for Farms/other
-    "Home garden": { color: "#66CDAA", fillOpacity: 0.5, weight: 2 },         // Medium aquamarine for Home garden
-    "Urban area": { color: "#696969", fillOpacity: 0.7, weight: 2 },          // Dim gray for Urban area
-    "Grassland": { color: "#ADFF2F", fillOpacity: 0.5, weight: 2 },           // Green yellow for Grassland
-    "Scrub land": { color: "#8B0000", fillOpacity: 0.5, weight: 2 },          // Dark red for Scrub land
-    "Rocks": { color: "#A9A9A9", fillOpacity: 0.6, weight: 2 },               // Dark gray for Rocks
-    "Water Bodies": { color: "#4682B4", fillOpacity: 0.5, weight: 2 },        // Steel blue for Water Bodies
-    "Wetland": { color: "#00CED1", fillOpacity: 0.4, weight: 2 }             // Dark turquoise for Wetland
+    "Forest": "#006400",              // Dark green for Forest
+    "Forest Plantation":  "#228B22",   // Lighter green for Forest Plantation
+    "AG": "#3CB371",                  // Medium sea green for Agriculture
+    "urban": "#808080",               // Gray for Urban
+    "Paddy": "#FFD700",          // Golden for Paddy
+    "Tea": "#8B4513",              // Saddle brown for Tea
+    "Perennials": "#556B2F",         // Dark olive green for Perennials
+    "Seasonal crop":  "#32CD32",       // Lime green for Seasonal crop
+    "Bareland":  "#D2B48C",           // Tan for Bareland
+    "Farms/other":  "#B8860B",       // Dark goldenrod for Farms/other
+    "Home garden":  "#66CDAA",         // Medium aquamarine for Home garden
+    "Urban area": "#696969",           // Dim gray for Urban area
+    "Grassland":  "#ADFF2F",           // Green yellow for Grassland
+    "Scrub land": "#8B0000",           // Dark red for Scrub land
+    "Rocks": "#A9A9A9",                // Dark gray for Rocks
+    "Water Bodies":  "#4682B4",         // Steel blue for Water Bodies
+    "Wetland":  "#00CED1",             // Dark turquoise for Wetland
     // Add more classes and colors as needed
 };
 
