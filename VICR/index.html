@@ -1,1 +1,76 @@
-hi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoTIFF on Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map { height: 600px; }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- GeoTIFF.js Library from CDN -->
+<script src="https://unpkg.com/geotiff@1.0.0/dist/geotiff.bundle.js"></script>
+
+<!-- Leaflet GeoTIFF Plugin -->
+<script src="https://unpkg.com/leaflet-geotiff"></script>
+
+<script>
+// Debug: Check if GeoTIFF is loaded
+console.log("GeoTIFF library loaded: ", typeof GeoTIFF);
+
+var map = L.map('map').setView([51.505, -0.09], 13);
+
+// Add OpenStreetMap tiles as a base layer
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+// Async function to load GeoTIFF and set up the layer
+async function loadGeoTIFF() {
+    try {
+        // Debug: Check GeoTIFF object before usage
+        if (typeof GeoTIFF === "undefined") {
+            throw new Error("GeoTIFF library is not loaded.");
+        }
+
+        // Fetch the GeoTIFF from the URL
+        const response = await fetch('https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/VICR/GW_sustainability_signed_16_africa.tif');
+        const data = await response.arrayBuffer();
+
+        // Decode the GeoTIFF
+        const tiff = await GeoTIFF.fromArrayBuffer(data);
+
+        // Get the first image from the GeoTIFF
+        const image = await tiff.getImage();
+
+        // Create a Leaflet GeoTIFF layer
+        const geoTiffLayer = L.leafletGeoTIFF(image).addTo(map);
+
+        // Handle click events to get pixel values
+        map.on('click', function(event) {
+            const latlng = event.latlng;
+            const coords = map.latLngToContainerPoint(latlng);
+
+            // Convert map coordinates to pixel coordinates and retrieve pixel value
+            const pixel = geoTiffLayer.getPixelValue(coords.x, coords.y);
+
+            console.log('Pixel value at ' + latlng.toString() + ': ', pixel);
+        });
+    } catch (error) {
+        console.error("Error loading GeoTIFF:", error);
+    }
+}
+
+// Call the async function to load the GeoTIFF
+loadGeoTIFF();
+
+</script>
+
+</body>
+</html>
