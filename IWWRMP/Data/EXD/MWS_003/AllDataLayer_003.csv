@@ -4,17 +4,17 @@ ID,MWS,Group,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,Downloa
 3,MWS-003,Base,Administration,GN Boundary,,SD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/01_ADM/GND/MWS_003.geojson,2019
 4,MWS-003,Base,Land cover,Land cover,,LUPPD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/04_LND/LND_LULC/LND_LULC_MWS_003.geojson,2019
 5,MWS-003,Base,Reservation,To be forest,,FD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/03_RSV/RSV_FRC_TF/RSV_FRC_TF_MWS_003.geojson,
-6,MWS-003,Base,Reservation,Reserved forest,,FD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/03_RSV/RSV_FRC_RF/RSV_FRC_RF_MWS_003.geojson,
-7,MWS-003,Base,Reservation,Conservation forest,,FD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/03_RSV/RSV_FRC_CNF/RSV_FRC_CNF_003.geojson,2019
-8,MWS-003,Base,Reservation,Wild life boundary,,DWC,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/03_RSV/RSV_FRC_CNF/RSV_FRC_CNF_003.geojson,2019
+6,MWS-003,Base,Reservation,Reserved forest,,FD,Raw,Yes,Vector,,,,
+7,MWS-003,Base,Reservation,Conservation forest,,FD,Raw,Yes,Vector,,,,2019
+8,MWS-003,Base,Reservation,Wild life boundary,,DWC,Raw,Yes,Vector,,,,2019
 9,MWS-003,Detail,Topography,Spote height,,MASL,Raw,Yes,Vector,,,,2010
-10,MWS-003,Detail,Topography,Contour,,MASl,Raw,Yes,Vector,,,,2010
+10,MWS-003,Detail,Topography,Contour,,MASL,Raw,Yes,Vector,,,,2010
 11,UMW,Raster,Topography,DEM,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/Elevation.png,2024
 12,UMW,Raster,Topography,Slope,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/slope.png,2024
 13,MWS-003,Base,Soil,Soil type,,NRMC,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/05_SOL/SOIL_SLT/SOIL_SLT_MWS_003.geojson,2010
 14,MWS-003,Base,Soil,Agro-ecological zone,,NRMC,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/10_MET/Agro_Eco_Zone/Agro_Eco_Zone_MWS_003.geojson,2010
 15,MWS-003,Base,Risk and Hazard,Landslide hazard zone,,NBRO,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/11_HZR/HZR/ED_11_HZR_MWS_003.geojson,2020
-16,MWS-003,Base,Risk and Hazard,Flood,,,,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/11_HZR/HZR/,
+16,MWS-003,Base,Risk and Hazard,Flood,,,,Yes,Vector,,,,
 17,MWS-003,Raster,Risk and Hazard,Forest Fire,,IWMI,Derive,Yes,Vector,,,,2024
 18,MWS-003,Base,Demography,Population,,RP,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/07_SED/SED_PPL/SED_PPL_MWS_003.geojson,2023
 19,MWS-003,Detail,Hydrology,Stream network,,IWMI,Derive,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/02_HYD/HYD_DRN/HYD_DRN_MWS_003.geojson,2024
