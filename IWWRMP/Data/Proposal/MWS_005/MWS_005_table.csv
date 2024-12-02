@@ -1,6 +1,6 @@
 ID,MWS,Group,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,geojson,Year
-1,MWS-005,Proposal,,Key activities proposed for soil and water conservation in MWS-005,,,,,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_005/Table_6_1.csv,
-2,MWS-005,Proposal,,Details of Reported landslides in MWS-005,,,,,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_005/Table_6_2.csv,
+1,MWS-005,Proposal,Proposal,Key activities proposed for soil and water conservation in MWS-005,,,,,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_005/Table_6_1.csv,
+2,MWS-005,Proposal,Proposal,Details of Reported landslides in MWS-005,,,,,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_005/Table_6_2.csv,
 3,MWS-005,Proposal,,Details of minor tanks available in MWS-005,,,,,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_005/Table_6_3.csv,
 4,MWS-005,Proposal,,Salient details of tanks in MWS-005,,,,,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_005/Table_6_4.csv,
 5,MWS-005,Proposal,,Unit rates of different vegetative cover-improving methods for MWS-005,,,,,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Proposal/MWS_005/Table_6_5.csv,
