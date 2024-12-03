@@ -13,7 +13,7 @@ ID,MWS,Group,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,Downloa
 12,UMW,Raster,Topography,Slope,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/slope.png,
 13,MWS-006-2,Base,Soil,Soil type,,NRMC,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/05_SOL/SOIL_SLT/SOIL_SLT_MWS_006_2.geojson,
 14,MWS-006-2,Base,Soil,Agro-ecological zone,,NRMC,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/10_MET/Agro_Eco_Zone/Agro_Eco_Zone_MWS_006_2.geojson,
-15,MWS-006-2,Base,Risk and Hazard,Landslide hazard zone,,NBRO,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/11_HZR/HZR/ED_11_MWS_006_2.geojson,
+15,MWS-006-2,Base,Risk and Hazard,Landslide hazard zone,,NBRO,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/11_HZR/HZR/ED_11_HZR_MWS_006_2.geojson,
 16,MWS-006-2,Base,Risk and Hazard,Flood,,,,Yes,Vector,,,,
 17,MWS-006-2,Raster,Risk and Hazard,Forest Fire,,IWMI,Derive,Yes,Vector,,,,
 18,MWS-006-2,Base,Demography,Population,,RP,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/07_SED/SED_PPL/SED_PPL_MWS_006_2.geojson,
