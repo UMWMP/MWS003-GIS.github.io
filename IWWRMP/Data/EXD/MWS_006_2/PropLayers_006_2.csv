@@ -1,5 +1,4 @@
-﻿,MWS-006-2,,,,,,,,,,,,
-ID,MWS,Group,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,Download,geojson,Year
+﻿ID,MWS,Group,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,Download,geojson,Year
 1,MWS-006-2,Proposal,Proposal Soil,Soil and water conservation,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/100_PRP/MWS_006_2/MWS0060601.geojson,2024
 2,MWS-006-2,Proposal,Proposal Soil,Details of reported landslides,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/100_PRP/MWS_006_2/MWS0060602.geojson,2024
 3,MWS-006-2,Proposal,Proposal Irrigation,Details of minor tanks available,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/100_PRP/MWS_006_2/MWS0060603.geojson,2024
