@@ -56,7 +56,7 @@
         "Contributions (Local Community, LA, Project)": "Funded by the project\nWater quality analysis by NWSDB/WRB\nLocal/Central governments ",
         "Time frame for the implementation": "0.25 Years\n0.5 Years",
         "photolink": "ffff",
-        "photopath": ""
+        "photopath": "https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/200_photo/MWS_003/IMG_20240110_155007.jpg"
       },
       "geometry": {
         "type": "Point",
