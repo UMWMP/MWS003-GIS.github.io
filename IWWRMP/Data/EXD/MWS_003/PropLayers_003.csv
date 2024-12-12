@@ -13,3 +13,4 @@ ID,MWS,Group,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,Downloa
 32,MWS-003,Detail,Trasport,Raod,,SD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/08_TRP/TR_Transport/TR_Transport_Pt_MWS_003.geojson,
 33,MWS-003,Detail,Location ,Places,,,,,,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/09_PLC/CA_Toponym/CA_Toponym_Pt_MWS_003.geojson,
 22,MWS-003,Proposal,Proposal Econmics,Pecoe Trail,,,,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/100_PRP/UMW/PekoeTrail_Li.geojson,2024
+22,MWS-003,Proposal,Proposal Econmics,Tourist attract places,,,,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/100_PRP/UMW/Tourism_Places.geojson,2024
