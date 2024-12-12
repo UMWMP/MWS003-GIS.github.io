@@ -5,7 +5,7 @@ ID,MWS,Group,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,Downloa
 22,MWS-003,Proposal,Proposal-Water Quality Improvement,Water quality improvement,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/100_PRP/MWS_003/Table 6_14.geojson,2024
 22,MWS-003,Proposal,Proposal-Stream Reservation,Stream Reservation,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/100_PRP/MWS_003/Table 6_18.geojson,2024
 23,MWS-003,Proposal,Proposal-Soil and Water Conservation,Lanslides,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/100_PRP/MWS_003/Table 6_2.geojson,2024
-21,MWS-003,Proposal,Proposal-Minor Tanks Restoration,Minor irrigation,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/100_PRP/MWS_003/Table 6_3.geojson,2024
+21,MWS-003,Proposal,Proposal-Minor Tanks Restoration,Minor tanks,,IWMI/GCP,Field,Yes,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/100_PRP/MWS_003/Table 6_3.geojson,2024
 25,MWS-003,Report,Report,Watershed managment plan,,IWMI,Derive,No,Text,,,,2024
 26,MWS-003,Map,Map,Atlas,,IWMI,Derive,No,Image,,,,2024
 27,MWS-003,Photo,Photo,Photo,,IWMI,Derive,Yes,Photo,,,,2024
