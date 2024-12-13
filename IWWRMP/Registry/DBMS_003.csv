@@ -6,7 +6,7 @@ ID,MWS,Group,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,Downloa
 5,MWS-003,Base Layers,Reservation,Environmental protection area,,FD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/03_RSV/RSV_FRC_TF/RSV_FRC_TF_MWS_003.geojson,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 6,MWS-003,Base Layers,Reservation,Reserved forest,,FD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/03_RSV/RSV_FRC_RF/RSV_FRC_RF_UMW.geojson,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 7,MWS-003,Base Layers,Reservation,Conservation forest,,FD,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/03_RSV/RSV_FRC_CNF/RSV_FRC_CNF_UMW.geojson,2019,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-8,MWS-003,Base Layers,Reservation,Wild life boundary,,DWLC,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/03_RSV/RSV_DWC/RSV_DWC_UMW.geojson,2019,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+8,MWS-003,Base Layers,Reservation,Wild life boundary,,DWC,Raw,Yes,Vector,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/03_RSV/RSV_DWC/RSV_DWC_UMW.geojson,2019,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 9,MWS-003,Detail Layers,Topography,Spote height,,MASL,Raw,Yes,Vector,,google drive,,2010,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 10,MWS-003,Detail Layers,Topography,Contour,,MASL,Raw,Yes,Vector,,google drive,,2010,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 11,UMW,Raster Layers,Topography,DEM,,IWMI-IWWRMP,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/Elevation.png,2024,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
