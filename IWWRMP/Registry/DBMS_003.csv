@@ -173,4 +173,3 @@ ID,MWS,Group,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,Downloa
 172,MWS-003,Product,Statistic,Climate statistic,,IWMI-IWWRMP,Derive,No,Text,,,.csv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 173,MWS-003,Product,Photo,Photo,,IWMI-IWWRMP,Derive,No,Image,,google drive,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 174,UMW,"Administration ","Organization ",List of stakeholders,,,,No,Text,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/EXD/Admin/UMW_Stakeholder_List.xlsx,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
