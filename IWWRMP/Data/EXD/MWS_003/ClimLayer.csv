@@ -16,7 +16,7 @@ ID,MWS,Group,Database,Layer,Name,Provider,Level,Geocode,Type,Discription,Downloa
 ,UMW,Climate,Rainfall,Monthly Rainfall - 10,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/RF_10.png,
 ,UMW,Climate,Rainfall,Monthly Rainfall - 11,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/RF_11.png,
 ,UMW,Climate,Rainfall,Monthly Rainfall - 12,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/RF_12.png,
-,UMW,Climate,Temporature - Max,Monthly  Temporature - Max- 01,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/TMAX_1.png,
+,UMW,Climate,Temporature - Max,Monthly  Temporature - Max-01,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/TMAX_1.png,
 ,UMW,Climate,Temporature - Max,Monthly  Temporature - Max- 02,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/TMAX_2.png,
 ,UMW,Climate,Temporature - Max,Monthly  Temporature - Max- 03,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/TMAX_3.png,
 ,UMW,Climate,Temporature - Max,Monthly  Temporature - Max- 04,,IWMI,Derive,Yes,Raster,,,https://raw.githubusercontent.com/MWS003-GIS/MWS003-GIS.github.io/main/IWWRMP/Data/Derive/TMAX_4.png,
